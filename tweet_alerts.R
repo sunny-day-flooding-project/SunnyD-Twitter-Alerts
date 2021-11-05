@@ -4,8 +4,10 @@ while(run ==T){
   start_time <- Sys.time()
   print(start_time)
   
+  token <- Sys.getenv("TWITTER_TOKEN")
   
-  twitter_token <- readRDS(Sys.getenv("TWITTER_TOKEN"))
+  twitter_token <- readRDS(token)
+  
   my_timeline <- rtweet::get_my_timeline(token = twitter_token)
   print(my_timeline)
 
