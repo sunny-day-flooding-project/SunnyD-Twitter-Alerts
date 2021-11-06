@@ -5,11 +5,13 @@ googledrive::drive_auth(path = Sys.getenv("GOOGLE_JSON_KEY"))
 
 twitter_token_id <- googledrive::drive_get(shared_drive = as_id(Sys.getenv("GOOGLE_SHARED_DRIVE_ID")), path = "twitter_token.rds")
 
-twitter_token_file <- googledrive::drive_download(twitter_token_id)
+tmp_file_path <- tempfile(fileext = ".rds")
+
+twitter_token_file <- googledrive::drive_download(twitter_token_id, path = tmp_file_path)
 
 print(twitter_token_file)
 
-Sys.setenv("TWITTER_PAT"= twitter_token_file$local_path)
+Sys.setenv("TWITTER_PAT"= tmp_file_path)
 
 run = T
 
