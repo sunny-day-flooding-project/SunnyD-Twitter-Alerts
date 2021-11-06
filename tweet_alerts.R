@@ -1,13 +1,21 @@
+library(rtweet)
+library(googledrive)
+
+googledrive::drive_auth(path = Sys.getenv("GOOGLE_JSON_KEY"))
+
+twitter_token_id <- googledrive::drive_get(shared_drive = as_id(Sys.getenv("GOOGLE_SHARED_DRIVE_ID")), path = "twitter_token.rds")
+
+twitter_token_file <- googledrive::drive_download(twitter_token_id)
+
+Sys.setenv("TWITTER_PAT"= twitter_token_file$local_path)
+
 run = T
 
 while(run ==T){
   start_time <- Sys.time()
   print(start_time)
-  
-  token <- Sys.getenv("TWITTER_TOKEN")
-  
-  twitter_token <- readRDS(token)
-  
+
+  rtweet::get_token()
   my_timeline <- rtweet::get_my_timeline(token = twitter_token)
   print(my_timeline)
 

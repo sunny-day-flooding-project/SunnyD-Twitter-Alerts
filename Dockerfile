@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get clean
 
 # install renv & restore packages
-RUN install2.r rtweet
+RUN install2.r rtweet googledrive
 
 RUN groupadd -r tweet_alerts && useradd --no-log-init -r -g tweet_alerts tweet_alerts
 
