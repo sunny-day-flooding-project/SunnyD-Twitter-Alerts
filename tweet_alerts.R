@@ -11,7 +11,7 @@ twitter_token_file <- googledrive::drive_download(twitter_token_id, path = tmp_f
 
 print(twitter_token_file)
 
-Sys.setenv("TWITTER_PAT"= tmp_file_path)
+twitter_token <- readRDS(tmp_file_path)
 
 run = T
 
@@ -19,13 +19,13 @@ while(run ==T){
   start_time <- Sys.time()
   print(start_time)
 
-  rtweet::get_token()
+  # rtweet::get_token()
   my_timeline <- rtweet::get_my_timeline(token = twitter_token)
   print(my_timeline)
 
   # Wait to make the delay 6 minutes
   delay <- difftime(Sys.time(),start_time, units = "secs")
   
-  Sys.sleep((60*6) - delay)
+  Sys.sleep((60*2) - delay)
 }
 
