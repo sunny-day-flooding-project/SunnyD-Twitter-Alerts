@@ -7,6 +7,8 @@ twitter_token_id <- googledrive::drive_get(shared_drive = as_id(Sys.getenv("GOOG
 
 twitter_token_file <- googledrive::drive_download(twitter_token_id)
 
+print(twitter_token_file)
+
 Sys.setenv("TWITTER_PAT"= twitter_token_file$local_path)
 
 run = T
